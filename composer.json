@@ -1,0 +1,32 @@
+{
+    "name": "edforce/edforce-data-manager",
+    "description": "The package to test the plugin",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "wp-phpunit/wp-phpunit": "^6.0",
+        "yoast/phpunit-polyfills": "^4.0" 
+    },
+    "autoload": {
+        "psr-4": {
+            "Hp\\EdforceDataManager\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EdforceDataManager\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+    "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "johnpbloch/wordpress-unit-test-case": true
+        }
+    },
+    "authors": [
+        {
+            "name": "prateek sagar"
+        }
+    ]
+}
