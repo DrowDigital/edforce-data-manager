@@ -43,4 +43,15 @@ class SubcategoryData implements HandleCRUD {
         global $wpdb;
         return $wpdb->query("DELETE FROM {$this->table}");
     }
+
+    public function get_data_by_id($id){
+        global $wpdb;
+        return $wpdb->get_row($wpdb->prepare("SELECT * FROM {$this->table} WHERE id = %d", $id), ARRAY_A);
+    }
+    
+
+    public function get_data_under_category($category_id){
+        global $wpdb;
+        return $wpdb->get_row($wpdb->prepare("SELECT * FROM {$this->table} WHERE category_id = %d", $category_id), ARRAY_A);
+    }
 }
