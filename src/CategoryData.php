@@ -1,5 +1,5 @@
 <?php
-
+namespace Hp\EdforceDataManager;
 use Hp\EdforceDataManager\Interfaces\HandleCRUD;
 
 class CategoryData implements HandleCRUD {
@@ -43,4 +43,10 @@ class CategoryData implements HandleCRUD {
         global $wpdb;
         return $wpdb->query("DELETE FROM {$this->table}");
     }
+
+    public function get_data_by_id($id){
+        global $wpdb;
+        return $wpdb->get_row($wpdb->prepare("SELECT * FROM {$this->table} WHERE id = %d", $id), ARRAY_A);
+    }
+
 }

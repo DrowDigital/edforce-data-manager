@@ -2,6 +2,8 @@
 
 use Hp\EdforceDataManager\DataManager;
 use Hp\EdforceDataManager\EdForceDataBase;
+use Hp\EdforceDataManager\SubcategoryData;
+use Hp\EdforceDataManager\Interfaces\HandleCRUD;
 
 class SampleTest extends WP_UnitTestCase {
 
@@ -121,6 +123,23 @@ class SampleTest extends WP_UnitTestCase {
         $this->assertNotNull( $actual_table_name, "The table '{$this->category_table}' should exist in the database." );
         $this->assertEquals( $this->category_table, $actual_table_name, "The found table name does not match the expected name." );
     }
+
+    public function test_existence_subcategory_table() {
+        global $wpdb;
+
+        $actual_table_name = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $this->subcategory_table ) );
+
+        $this->assertNotNull( $actual_table_name, "The table '{$this->subcategory_table}' should exist in the database." );
+        $this->assertEquals( $this->subcategory_table, $actual_table_name, "The found table name does not match the expected name." );
+    }
     
+
+    public function test_has_class_exist_to_save_subcategory(){
+        $this->assertTrue(class_exists("Hp\EdforceDataManager\SubcategoryData"), "Subcategory Class should Exist");
+    }
+
+    // public function test_is_subcategory_class_has_function_to_save_data(){
+    //     $edforce_save_subcategory = new $
+    // }
        
 }

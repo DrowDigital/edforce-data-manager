@@ -14,8 +14,11 @@ class DataManager {
     }
 
     public function enqueue_admin_styles($hook_suffix) {
-        if ( 'toplevel_page_edforce-data-manager' !== $hook_suffix ) {
-           return;
+        if (strpos($hook_suffix, 'edforce-data-manager') === false && 
+            strpos($hook_suffix, 'courses') === false &&
+            strpos($hook_suffix, 'training-calender') === false &&
+            strpos($hook_suffix, 'certifications') === false) {
+            return;
         }
         
         wp_enqueue_style(
@@ -24,11 +27,26 @@ class DataManager {
             [], 
             '1.0.0'
         );
+
+        $scripts = [
+            'add-data.js',
+            'get-data.js',
+            'get-subcategory.js',
+            'add-subcategory.js',
+        ];
+
+        foreach ($scripts as $script) {
+            wp_enqueue_script(
+                'edforce-data-manager-' . basename($script, '.js') . '-script',
+                plugins_url('src/js/' . $script, EDMANAGER_PLUGIN_FILE),
+                ['jquery'],
+                '1.0.0',
+                true
+            );
+        }
     }
 
-
     public function init() {
-       
     }
 
     public static function create_plugin_tables() {
@@ -73,10 +91,9 @@ class DataManager {
             'certifications', // Menu slug
             [$this, 'render_submenu_page'] // Use the same callback as the parent menu
         );
+
     }
 
-    
-    
     public function render_submenu_page() {
         $page_slug = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
 

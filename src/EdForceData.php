@@ -1,5 +1,5 @@
 <?php
-
+namespace Hp\EdforceDataManager;
 use Hp\EdforceDataManager\Interfaces\HandleCRUD;
 
 class EdForceData implements HandleCRUD {

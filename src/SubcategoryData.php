@@ -1,5 +1,5 @@
 <?php
-
+namespace Hp\EdforceDataManager;
 use Hp\EdforceDataManager\Interfaces\HandleCRUD;
 
 class SubcategoryData implements HandleCRUD {
@@ -48,7 +48,6 @@ class SubcategoryData implements HandleCRUD {
         global $wpdb;
         return $wpdb->get_row($wpdb->prepare("SELECT * FROM {$this->table} WHERE id = %d", $id), ARRAY_A);
     }
-    
 
     public function get_data_under_category($category_id){
         global $wpdb;

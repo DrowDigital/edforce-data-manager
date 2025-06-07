@@ -1,5 +1,5 @@
 <?php
-
+namespace Hp\EdforceDataManager;
 use Hp\EdforceDataManager\Interfaces\BulkUpload;
 
 class DataBulkUpload implements BulkUpload {

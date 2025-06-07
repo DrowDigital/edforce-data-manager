@@ -12,5 +12,7 @@ interface HandleCRUD {
     public function delete_data_from_db();
 
     public function delete_all_data_from_db();
+
+    public function get_data_by_id($id);
     
 }
