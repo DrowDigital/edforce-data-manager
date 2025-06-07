@@ -20,7 +20,13 @@ use Hp\EdforceDataManager\DataManager;
 
 require_once plugin_dir_path(__FILE__) . 'src/DataManager.php';
 
+register_activation_hook( __FILE__, array( 'Hp\\EdforceDataManager\\DataManager', 'create_plugin_tables' ));
+
 global $edforce_data_manager_instance;
+
+add_action('plugins_loaded', function () {
+    error_log('✅ Plugin bootstrapped and logging works');
+});
 
 add_action( 'plugins_loaded', function() {
     global $edforce_data_manager_instance;
